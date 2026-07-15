@@ -1,0 +1,33 @@
+# Data
+data/raw/
+data/*.duckdb
+*.duckdb
+
+# Models
+models_saved/*.joblib
+
+# Env
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Tools
+.prefect/
+.dbt/
+target/
+dbt_packages/
+
+# Notebooks
+notebooks/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

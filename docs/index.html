@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sebastian Zapata — Data Engineer</title>
+<meta name="description" content="Sebastian Zapata — Data Engineer building pipelines, dbt models, and ML systems. Open to remote opportunities." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="logo">SZ<span class="dot">.</span>dev</a>
+    <button class="hamburger" id="hamburger" aria-label="toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#projects">projects</a>
+      <a href="#stack">stack</a>
+      <a href="#about">about</a>
+      <a href="#contact">contact</a>
+      <a href="#contact" class="btn btn-accent btn-sm">hire me</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-inner">
+    <div class="badge reveal">
+      <span class="pulse-dot"></span>
+      open to remote opportunities
+    </div>
+    <h1 class="reveal delay-1">
+      Sebastian Zapata
+      <span class="hero-role">
+        <span id="typingText"></span><span class="cursor-blink">|</span>
+      </span>
+    </h1>
+    <p class="hero-sub reveal delay-2">
+      I build reliable data pipelines, warehouse models, and ML systems —
+      Python · DuckDB · dbt · Prefect · Streamlit · scikit-learn.
+    </p>
+    <div class="hero-actions reveal delay-3">
+      <a href="#projects" class="btn btn-accent">view projects</a>
+      <a href="./cv.pdf" class="btn btn-ghost" download>download CV</a>
+    </div>
+  </div>
+</header>
+
+<section class="metrics" id="metrics">
+  <div class="metrics-inner">
+    <div class="metric reveal">
+      <div class="metric-num" data-target="4">0</div>
+      <div class="metric-label">projects</div>
+    </div>
+    <div class="metric reveal delay-1">
+      <div class="metric-num" data-target="5" data-suffix="+">0</div>
+      <div class="metric-label">years experience</div>
+    </div>
+    <div class="metric reveal delay-2">
+      <div class="metric-num" data-target="3">0</div>
+      <div class="metric-label">cloud platforms</div>
+    </div>
+  </div>
+</section>
+
+<section class="stack" id="stack">
+  <div class="section-inner">
+    <h2 class="section-title reveal">stack</h2>
+    <div class="chips" id="chips">
+      <span class="chip reveal">Python</span>
+      <span class="chip reveal">DuckDB</span>
+      <span class="chip reveal">dbt</span>
+      <span class="chip reveal">Prefect</span>
+      <span class="chip reveal">Streamlit</span>
+      <span class="chip reveal">scikit-learn</span>
+      <span class="chip reveal">Parquet</span>
+      <span class="chip reveal">Spark</span>
+      <span class="chip reveal">Databricks</span>
+      <span class="chip reveal">Azure</span>
+      <span class="chip reveal">Docker</span>
+    </div>
+  </div>
+</section>
+
+<section class="projects" id="projects">
+  <div class="section-inner">
+    <h2 class="section-title reveal">projects</h2>
+    <div class="project-grid">
+
+      <article class="card card-featured card-purple reveal">
+        <div class="card-top">
+          <div class="card-icon">⚽</div>
+          <span class="status status-live">live</span>
+        </div>
+        <h3>Scout Engine</h3>
+        <p>Hidden gem detector using xG profiles and player similarity clustering across 6 European leagues.</p>
+        <div class="tags">
+          <span class="tag">DuckDB</span>
+          <span class="tag">K-Means</span>
+          <span class="tag">Understat</span>
+          <span class="tag">Streamlit</span>
+        </div>
+        <div class="card-actions">
+          <a href="https://huggingface.co/spaces/SebastianZapata/scout_engine" class="btn btn-accent btn-sm" target="_blank" rel="noopener">demo</a>
+          <a href="https://github.com/SebastianZapata/portfolio/tree/main/projects/scout_engine" class="btn btn-ghost btn-sm" target="_blank" rel="noopener">code</a>
+        </div>
+      </article>
+
+      <article class="card card-blue reveal delay-1">
+        <div class="card-top">
+          <div class="card-icon">🏠</div>
+          <span class="status status-building">building</span>
+        </div>
+        <h3>Lima Real Estate</h3>
+        <p>Predictive price/m² model detecting undervalued properties via MercadoLibre API.</p>
+        <div class="tags">
+          <span class="tag">Random Forest</span>
+          <span class="tag">dbt</span>
+          <span class="tag">MercadoLibre</span>
+          <span class="tag">DuckDB</span>
+        </div>
+        <div class="card-actions">
+          <a href="#" class="btn btn-accent btn-sm disabled">demo</a>
+          <a href="https://github.com/SebastianZapata/portfolio/tree/main/projects/real_estate_lima" class="btn btn-ghost btn-sm" target="_blank" rel="noopener">code</a>
+        </div>
+      </article>
+
+      <article class="card card-green reveal delay-2">
+        <div class="card-top">
+          <div class="card-icon">🎮</div>
+          <span class="status status-building">building</span>
+        </div>
+        <h3>Steam Intelligence</h3>
+        <p>Tag association mining to identify winning game niches for indie developers.</p>
+        <div class="tags">
+          <span class="tag">Apriori</span>
+          <span class="tag">K-Means</span>
+          <span class="tag">Prefect</span>
+          <span class="tag">SteamSpy</span>
+        </div>
+        <div class="card-actions">
+          <a href="#" class="btn btn-accent btn-sm disabled">demo</a>
+          <a href="https://github.com/SebastianZapata/portfolio/tree/main/projects/steam_intelligence" class="btn btn-ghost btn-sm" target="_blank" rel="noopener">code</a>
+        </div>
+      </article>
+
+      <article class="card card-amber reveal delay-3">
+        <div class="card-top">
+          <div class="card-icon">🌊</div>
+          <span class="status status-building">building</span>
+        </div>
+        <h3>Surf Predictor</h3>
+        <p>Surf session quality classifier for Costa Verde beach using Open-Meteo Marine API.</p>
+        <div class="tags">
+          <span class="tag">Decision Tree</span>
+          <span class="tag">Open-Meteo</span>
+          <span class="tag">Parquet</span>
+          <span class="tag">DuckDB</span>
+        </div>
+        <div class="card-actions">
+          <a href="#" class="btn btn-accent btn-sm disabled">demo</a>
+          <a href="https://github.com/SebastianZapata/portfolio/tree/main/projects/surf_predictor" class="btn btn-ghost btn-sm" target="_blank" rel="noopener">code</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="section-inner about-inner">
+    <div class="about-text reveal">
+      <h2 class="section-title">about</h2>
+      <p>
+        I'm a Senior Data Engineer with experience building production
+        pipelines on AWS and Azure, working across ingestion, warehousing,
+        and analytics layers. I care about building systems that are simple,
+        observable, and cheap to run — favoring boring, reliable
+        infrastructure over unnecessary complexity. Outside of client work,
+        I build end-to-end personal projects to explore new tools and keep
+        my ML and analytics-engineering skills sharp.
+      </p>
+    </div>
+    <div class="about-skills reveal delay-1">
+      <span class="skill-badge">Data Pipelines</span>
+      <span class="skill-badge">Data Warehousing</span>
+      <span class="skill-badge">dbt / Analytics Engineering</span>
+      <span class="skill-badge">Machine Learning</span>
+      <span class="skill-badge">Cloud (AWS / Azure)</span>
+      <span class="skill-badge">Orchestration</span>
+      <span class="skill-badge">Docker</span>
+      <span class="skill-badge">SQL</span>
+    </div>
+  </div>
+</section>
+
+<section class="experience" id="experience">
+  <div class="section-inner">
+    <h2 class="section-title reveal">experience</h2>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Sr. Data Engineer</h3>
+          <span class="timeline-meta">Cheers Health · AWS</span>
+          <p>Building and maintaining data pipelines and warehousing infrastructure on AWS.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal delay-1">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>Data Engineer</h3>
+          <span class="timeline-meta">Lima Airport Partners · Azure</span>
+          <p>Designed and operated data pipelines and analytics workflows on Azure.</p>
+        </div>
+      </div>
+      <div class="timeline-item timeline-placeholder reveal delay-2">
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <h3>+ more to come</h3>
+          <span class="timeline-meta">&nbsp;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="section-inner contact-inner reveal">
+    <h2 class="section-title">let's build something</h2>
+    <p class="contact-sub">Open to remote data engineering roles and collaborations.</p>
+    <div class="contact-links">
+      <a href="mailto:sebastian.bonillad@gmail.com" class="btn btn-accent">email me</a>
+      <a href="https://github.com/SebastianZapata" class="btn btn-ghost" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/sebastianzapata" class="btn btn-ghost" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="section-inner footer-inner">
+    <span>Built with vanilla JS · Hosted on GitHub Pages</span>
+    <div class="footer-links">
+      <a href="https://github.com/SebastianZapata" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/sebastianzapata" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:sebastian.bonillad@gmail.com">Email</a>
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
