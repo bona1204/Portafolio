@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: mart_player_season
+    description: >
+      Per-90-minute player profile used as the feature set for the
+      similarity/clustering model. Filters out players below a minimum
+      minutes threshold to keep per-90 rates stable. Incremental: only
+      reprocesses rows newer than the last fetch.
+    columns:
+      - name: player_id
+        description: Understat player identifier.
+        tests:
+          - not_null
+      - name: xg_per_90
+        description: Expected goals per 90 minutes.
+      - name: xa_per_90
+        description: Expected assists per 90 minutes.
+
+  - name: mart_team_season
+    description: >
+      Team-season rollup from match results: points, goals, and xG
+      totals, plus a performance-vs-xG proxy (goal_diff - xg_diff).
+    columns:
+      - name: team_id
+        description: Understat team identifier.
+        tests:
+          - not_null
+      - name: points
+        description: Total league points earned in the season.
+
+  - name: dim_player_latest
+    description: >
+      One row per player: their most recently observed team/league/
+      position. Snapshotted by snapshots/player_team_snapshot.sql for
+      Type-2 SCD history.
+    columns:
+      - name: player_id
+        description: Understat player identifier.
+        tests:
+          - unique
+          - not_null
+
+  - name: mart_player_breakout
+    description: >
+      "Breakout Watch" — FWD/MID players (only; see the model's header
+      comment for why) new to the dataset (at most 3 seasons on record)
+      whose npxG+xA per 90 jumped the most between the two most recent
+      absolute seasons. breakout_percentile ranks that year-over-year
+      delta within position.
+    columns:
+      - name: player_id
+        description: Understat player identifier.
+        tests:
+          - not_null
+      - name: output_delta
+        description: >
+          Change in npxG+xA per 90 between the latest season and the
+          one before it.

@@ -1,0 +1,11 @@
+data/
+models_saved/
+dbt_project/target/
+dbt_project/dbt_packages/
+dbt_project/profiles.yml
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+notebooks/
+.env

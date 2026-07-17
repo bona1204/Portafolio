@@ -1,6 +1,5 @@
 """DuckDB connection helpers shared across the pipeline, models, and app layers."""
 
-import os
 from pathlib import Path
 from typing import Optional
 
@@ -17,14 +16,10 @@ def init_db(db_path: str = "data/portfolio.duckdb") -> duckdb.DuckDBPyConnection
     Returns:
         An open DuckDB connection.
     """
-    try:
-        Path(db_path).parent.mkdir(parents=True, exist_ok=True)
-        conn = duckdb.connect(db_path)
-        logger.success(f"Connected to DuckDB at {db_path}")
-        return conn
-    except Exception as exc:
-        logger.error(f"Failed to connect to DuckDB at {db_path}: {exc}")
-        raise
+    Path(db_path).parent.mkdir(parents=True, exist_ok=True)
+    conn = duckdb.connect(db_path)
+    logger.success(f"Connected to DuckDB at {db_path}")
+    return conn
 
 
 def get_conn(db_path: str = "data/portfolio.duckdb") -> duckdb.DuckDBPyConnection:
@@ -43,8 +38,16 @@ def execute_query(
     conn: duckdb.DuckDBPyConnection,
     query: str,
     params: Optional[list] = None,
-) -> any:
+) -> list:
     """Execute a SQL query against the given connection.
+
+    Deliberately does not catch query errors: a failed query almost always
+    means a real bug (missing table, typo'd column, bad params) that
+    callers need to see, not silently swallow into an empty/None result —
+    an earlier version of this function caught and logged all exceptions
+    here, which made `train.py:load_features` misreport a broken query as
+    "mart_player_season returned no rows — run dbt run first" instead of
+    surfacing the actual error.
 
     Args:
         conn: An open DuckDB connection.
@@ -52,12 +55,8 @@ def execute_query(
         params: Optional list of parameters to bind to the query.
 
     Returns:
-        The query result, or None if execution failed.
+        The query result as a list of row tuples.
     """
-    try:
-        if params is not None:
-            return conn.execute(query, params).fetchall()
-        return conn.execute(query).fetchall()
-    except Exception as exc:
-        logger.error(f"Query failed: {query} | error: {exc}")
-        return None
+    if params is not None:
+        return conn.execute(query, params).fetchall()
+    return conn.execute(query).fetchall()

@@ -8,11 +8,17 @@ seed-paths: ["seeds"]
 test-paths: ["tests"]
 analysis-paths: ["analyses"]
 macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
 
 target-path: "target"
 clean-targets:
   - "target"
   - "dbt_packages"
+
+vars:
+  # Path to the raw Understat Parquet files, relative to dbt_project/.
+  raw_data_path: "../data/raw"
+  raw_matches_path: "../data/raw_matches"
 
 models:
   scout_engine:

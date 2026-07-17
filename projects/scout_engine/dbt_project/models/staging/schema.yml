@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: stg_players
+    description: >
+      One row per player, per league, per season, standardized from the
+      raw Understat Parquet files in data/raw/.
+    columns:
+      - name: player_id
+        description: Understat player identifier.
+        tests:
+          - not_null
+      - name: player_name
+        description: Player display name.
+        tests:
+          - not_null
+      - name: league
+        description: Understat league code (lowercased), e.g. epl, la_liga.
+        tests:
+          - not_null
+      - name: season
+        description: Season start year, e.g. 2023.
+        tests:
+          - not_null
+      - name: minutes_played
+        description: Total minutes played in the season.
+      - name: xg
+        description: Expected goals accumulated over the season.
+      - name: xa
+        description: Expected assists accumulated over the season.
+
+  - name: stg_matches
+    description: >
+      One row per (match, side) — each match unpivoted into a home row
+      and an away row so both can be aggregated identically.
+    columns:
+      - name: match_id
+        description: Understat match identifier.
+        tests:
+          - not_null
+      - name: team_id
+        description: Understat team identifier.
+        tests:
+          - not_null
+      - name: venue
+        description: Whether this row is the home or away side of the match.
+        tests:
+          - accepted_values:
+              values: ["home", "away"]
