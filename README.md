@@ -1,4 +1,4 @@
-# Data Engineering Portfolio — Sebastian Zapata
+# Data Engineering Portfolio — Sebastian Bonilla
 
 Portfolio of end-to-end data engineering projects: ingestion pipelines, dbt
 transformations, ML models, and Streamlit apps, built with a lightweight,

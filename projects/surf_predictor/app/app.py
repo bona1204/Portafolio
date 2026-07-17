@@ -6,7 +6,7 @@ import streamlit as st
 
 PROJECT_NAME: str = "Surf Predictor"
 GITHUB_URL: str = "https://github.com/bona1204/Portafolio/tree/main/projects/surf_predictor"
-DEMO_URL: str = "https://huggingface.co/spaces/SebastianZapata/surf_predictor"
+DEMO_URL: str = "https://huggingface.co/spaces/bona1204/surf_predictor"
 
 
 def render_sidebar() -> None:

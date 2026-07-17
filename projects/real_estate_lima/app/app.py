@@ -6,7 +6,7 @@ import streamlit as st
 
 PROJECT_NAME: str = "Lima Real Estate"
 GITHUB_URL: str = "https://github.com/bona1204/Portafolio/tree/main/projects/real_estate_lima"
-DEMO_URL: str = "https://huggingface.co/spaces/SebastianZapata/real_estate_lima"
+DEMO_URL: str = "https://huggingface.co/spaces/bona1204/real_estate_lima"
 
 
 def render_sidebar() -> None:
