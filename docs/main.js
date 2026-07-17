@@ -32,38 +32,16 @@
   const el = document.getElementById("typingText");
   if (!el) return;
 
-  const words = ["Data Engineer", "Pipeline Architect", "ML Systems Builder"];
+  // Types out a single title and stops — no delete/cycle to other roles.
+  const WORD = "Data Engineer Sr.";
   const TYPE_SPEED = 80;
-  const DELETE_SPEED = 45;
-  const HOLD_MS = 1400;
 
-  let wordIndex = 0;
   let charIndex = 0;
-  let deleting = false;
 
   function tick() {
-    const word = words[wordIndex];
-
-    if (!deleting) {
-      charIndex++;
-      el.textContent = word.slice(0, charIndex);
-      if (charIndex === word.length) {
-        deleting = true;
-        setTimeout(tick, HOLD_MS);
-        return;
-      }
-      setTimeout(tick, TYPE_SPEED);
-    } else {
-      charIndex--;
-      el.textContent = word.slice(0, charIndex);
-      if (charIndex === 0) {
-        deleting = false;
-        wordIndex = (wordIndex + 1) % words.length;
-        setTimeout(tick, TYPE_SPEED);
-        return;
-      }
-      setTimeout(tick, DELETE_SPEED);
-    }
+    charIndex++;
+    el.textContent = WORD.slice(0, charIndex);
+    if (charIndex < WORD.length) setTimeout(tick, TYPE_SPEED);
   }
 
   tick();
