@@ -8,6 +8,15 @@
 **/models_saved/*.joblib
 **/models_saved/*.parquet
 
+# scout_engine ships a frozen, prebuilt snapshot of its DuckDB + trained
+# models so Streamlit Community Cloud (which only runs `pip install` +
+# app.py, no custom build step) has data to serve without re-running the
+# Understat/dbt/train pipeline on every deploy. Re-run the pipeline
+# locally and commit the refreshed files to update the demo's data.
+!projects/scout_engine/data/portfolio.duckdb
+!projects/scout_engine/models_saved/*.joblib
+!projects/scout_engine/models_saved/*.parquet
+
 # Env
 .env
 

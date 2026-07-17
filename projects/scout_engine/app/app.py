@@ -40,8 +40,10 @@ from app.similarity import find_similar_players
 from src.models.train import FEATURE_COLUMNS
 
 PROJECT_NAME: Final[str] = "Scout Engine"
-GITHUB_URL: Final[str] = "https://github.com/SebastianZapata/portfolio/tree/main/projects/scout_engine"
-DEMO_URL: Final[str] = "https://huggingface.co/spaces/SebastianZapata/scout_engine"
+GITHUB_URL: Final[str] = "https://github.com/bona1204/Portafolio/tree/main/projects/scout_engine"
+# TODO: update once the Streamlit Community Cloud app is deployed and its
+# real URL is known (see README.md#deployment) — this is a placeholder.
+DEMO_URL: Final[str] = "https://share.streamlit.io"
 DEFAULT_N_SIMILAR: Final[int] = 5
 
 

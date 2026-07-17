@@ -54,6 +54,16 @@ Understat (matches)   ──▶ stg_matches ──▶ mart_team_season
 See the [root README](../../README.md#local-setup). After `dbt run`, also
 run `dbt snapshot` to capture the SCD2 team-history table.
 
+## Deployment
+Deployed on [Streamlit Community Cloud](https://streamlit.io/cloud) (free
+tier), which only runs `pip install -r requirements.txt` then `app/app.py`
+— no custom build step. So unlike a Docker-based deploy, `data/portfolio.duckdb`
+and `models_saved/*.joblib`/`*.parquet` are **committed to the repo as a
+frozen snapshot** (an exception carved out of the root `.gitignore`),
+rather than regenerated on every deploy. To refresh the demo with newer
+data: re-run the pipeline locally (`fetch_data` → `dbt run` → `dbt
+snapshot` → `train`) and commit the updated files.
+
 ## Testing
 ```bash
 pytest

@@ -5,7 +5,7 @@ from pathlib import Path
 import streamlit as st
 
 PROJECT_NAME: str = "Steam Intelligence"
-GITHUB_URL: str = "https://github.com/SebastianZapata/portfolio/tree/main/projects/steam_intelligence"
+GITHUB_URL: str = "https://github.com/bona1204/Portafolio/tree/main/projects/steam_intelligence"
 DEMO_URL: str = "https://huggingface.co/spaces/SebastianZapata/steam_intelligence"
 
 
