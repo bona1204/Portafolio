@@ -42,6 +42,42 @@ Understat (matches)   ──▶ stg_matches ──▶ mart_team_season
   result. That scraper was also a Transfermarkt ToS violation, so it
   was dropped entirely rather than fixed.
 
+## How the app serves this
+
+The dbt marts and `train.py` artifacts above are all this pipeline
+produces "at rest" — none of it is queried live from Understat. The
+Streamlit app is a thin, cached read layer on top of that output:
+
+```
+Browser
+  │
+  ▼
+app/app.py  (UI only: tabs, widgets, charts — no data access itself)
+  │
+  ├──▶ app/data.py
+  │      • load_scaler / load_kmeans / load_cluster_labels  → models_saved/*.joblib
+  │      • load_player_features                             → models_saved/player_features.parquet
+  │      • load_mart_table("mart_player_breakout" | "mart_team_season") → data/portfolio.duckdb (read-only)
+  │      all wrapped in @st.cache_resource / @st.cache_data, keyed on
+  │      each file's mtime (artifact_mtime) so a retrained model on disk
+  │      is picked up without a stale in-memory cache surviving it
+  │
+  └──▶ app/similarity.py
+         • find_similar_players: fits a fresh scikit-learn NearestNeighbors
+           on whatever candidate pool the user's filters select (active
+           players / same playstyle cluster / everyone, × a season scope)
+         • refit-per-query instead of one pretrained index, since the
+           pool changes per request and refitting on ~27k rows is
+           effectively instant
+```
+
+`player_features.parquet` (not a live DuckDB query) is the source of
+truth for anything the k-NN touches — it's the exact row order
+`train.py` fit the scaler on, so row positions stay consistent between
+training and search. The dbt marts (`mart_player_breakout`,
+`mart_team_season`) are queried directly from DuckDB instead, since
+those tabs don't need row-position alignment with a fitted model.
+
 ## Layout
 - `src/pipeline/` — Understat ingestion (players + matches)
 - `src/models/` — similarity/clustering model
