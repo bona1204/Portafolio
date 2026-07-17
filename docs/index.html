@@ -111,6 +111,7 @@
         <div class="card-actions">
           <a href="https://share.streamlit.io" class="btn btn-accent btn-sm" target="_blank" rel="noopener">demo</a>
           <a href="https://github.com/bona1204/Portafolio/tree/main/projects/scout_engine" class="btn btn-ghost btn-sm" target="_blank" rel="noopener">code</a>
+          <button class="btn btn-ghost btn-sm" data-arch-open="arch-scout-engine">architecture</button>
         </div>
       </article>
 
@@ -255,6 +256,76 @@
     </div>
   </div>
 </footer>
+
+<div class="arch-overlay" id="archOverlay">
+  <div class="arch-modal" role="dialog" aria-modal="true" aria-labelledby="arch-scout-engine-title">
+
+    <div class="arch-panel" id="arch-scout-engine">
+      <button class="arch-close" data-arch-close aria-label="Close">&times;</button>
+      <h3 id="arch-scout-engine-title">Scout Engine — architecture</h3>
+      <p class="arch-sub">Two halves: how the data gets produced (dbt), and how the app serves it (Streamlit).</p>
+
+      <div class="arch-group">
+        <span class="arch-group-label">1 · data pipeline</span>
+        <div class="arch-diagram">
+          <div class="arch-row">
+            <div class="arch-node arch-node-source">Understat<br><small>players</small></div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node">stg_players</div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node arch-node-accent">mart_player_season<br><small>incremental</small></div>
+          </div>
+          <div class="arch-row arch-row-branch">
+            <div class="arch-spacer"></div>
+            <div class="arch-branches">
+              <div class="arch-node arch-node-small">dim_player_latest<br><small>+ SCD2 snapshot</small></div>
+              <div class="arch-node arch-node-small">train.py<br><small>scaler + k-means</small></div>
+              <div class="arch-node arch-node-small">mart_player_breakout<br><small>YoY output delta</small></div>
+            </div>
+          </div>
+          <div class="arch-row">
+            <div class="arch-node arch-node-source">Understat<br><small>matches</small></div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node">stg_matches</div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node">mart_team_season</div>
+          </div>
+        </div>
+        <p class="arch-note">
+          <code>mart_player_season</code> is incremental (only reprocesses rows newer
+          than the last fetch), and a Type-2 SCD snapshot tracks each player's
+          team/league/position history instead of overwriting it silently.
+        </p>
+      </div>
+
+      <div class="arch-group">
+        <span class="arch-group-label">2 · how the app serves it</span>
+        <div class="arch-diagram">
+          <div class="arch-row">
+            <div class="arch-node arch-node-source">Browser</div>
+            <div class="arch-arrow">→</div>
+            <div class="arch-node arch-node-accent">app.py<br><small>UI only</small></div>
+          </div>
+          <div class="arch-row arch-row-branch">
+            <div class="arch-spacer"></div>
+            <div class="arch-branches">
+              <div class="arch-node arch-node-small">data.py<br><small>cached loaders → DuckDB / joblib / parquet</small></div>
+              <div class="arch-node arch-node-small">similarity.py<br><small>on-demand k-NN per query</small></div>
+            </div>
+          </div>
+        </div>
+        <p class="arch-note">
+          Cached with <code>@st.cache_resource</code> / <code>@st.cache_data</code>,
+          keyed on each artifact file's mtime — so a retrained model on disk gets
+          picked up without a stale in-memory cache surviving it.
+        </p>
+      </div>
+
+      <a class="arch-readme-link" href="https://github.com/bona1204/Portafolio/tree/main/projects/scout_engine#readme" target="_blank" rel="noopener">Full write-up in the project README →</a>
+    </div>
+
+  </div>
+</div>
 
 <script src="main.js"></script>
 </body>

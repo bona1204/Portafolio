@@ -126,6 +126,42 @@
   counters.forEach((el) => observer.observe(el));
 })();
 
+/* ---------- architecture modal ---------- */
+(function initArchModal() {
+  const overlay = document.getElementById("archOverlay");
+  if (!overlay) return;
+
+  const openButtons = document.querySelectorAll("[data-arch-open]");
+  const panels = overlay.querySelectorAll(".arch-panel");
+
+  function openPanel(id) {
+    panels.forEach((panel) => panel.classList.toggle("open", panel.id === id));
+    overlay.classList.add("open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeOverlay() {
+    overlay.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  openButtons.forEach((btn) => {
+    btn.addEventListener("click", () => openPanel(btn.dataset.archOpen));
+  });
+
+  overlay.querySelectorAll("[data-arch-close]").forEach((btn) => {
+    btn.addEventListener("click", closeOverlay);
+  });
+
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) closeOverlay();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && overlay.classList.contains("open")) closeOverlay();
+  });
+})();
+
 /* ---------- cursor glow (desktop only) ---------- */
 (function initCursorGlow() {
   const glow = document.getElementById("cursorGlow");
